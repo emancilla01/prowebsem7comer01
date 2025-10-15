@@ -54,7 +54,7 @@ class ClienteController extends Controller
      */
     public function edit(cliente $cliente)
     {
-        //
+         return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -62,7 +62,16 @@ class ClienteController extends Controller
      */
     public function update(Request $request, cliente $cliente)
     {
-        //
+        $validated = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'fecha_nac' => 'required|date',
+        'rfc' => 'required|string|max:13',
+        'edad' => 'required|integer',
+    ]);
+
+    $cliente->update($validated);
+
+    return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
     }
 
     /**
