@@ -3,6 +3,11 @@
     @include('menu2')
 @endsection
 @section('contenido2')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <p>INFORMACION DE CLIENTES</p>
 <div class="table-responsive">
     <table class="table table-primary">
@@ -22,6 +27,7 @@
                 <td>{{$cliente->nombre}}</td>
                 <td>{{$cliente->fecha_nac}}</td>
                 <td>{{$cliente->rfc}}</td>
+                <td><a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning btn-sm">Editar</a></td>
             </tr>
             @endforeach
         </tbody>
