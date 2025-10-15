@@ -38,7 +38,7 @@ Route::get('ayuda',function() {
 
 
 Route::get('dashboard', function () {
-    return view("plantillas.inicio_autenticado"); //Inertia::render('Dashboard');
+    return view("inicio2"); //Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/logout',function(){
