@@ -9,4 +9,5 @@ class cliente extends Model
 {
     /** @use HasFactory<\Database\Factories\ClienteFactory> */
     use HasFactory;
+    protected $fillable = ['nombre', 'fecha_nac', 'rfc', 'edad'];
 }

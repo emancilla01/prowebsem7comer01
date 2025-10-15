@@ -1,7 +1,7 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-primary"
    >
-    <a class="navbar-brand" href="#">Comercializadora</a>
+    <a class="navbar-brand" href="inicio2">Comercializadora</a>
     {{-- <button
         class="navbar-toggler d-lg-none"
         type="button"

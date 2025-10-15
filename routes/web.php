@@ -45,10 +45,10 @@ Route::get('/logout',function(){
     return redirect('/');
 });
 
-Route::get('clientes',function() {
-    $clientes = DB::table('clientes')->paginate(5);
-    return view('clientes',['clientes'=>$clientes]);
-});
+// Route::get('clientes',function() {
+//     $clientes = DB::table('clientes')->paginate(5);
+//     return view('clientes',['clientes'=>$clientes]);
+// });
 
 Route::get('ventas',function() {
     $ventas = DB::table('ventas')->paginate(5);
@@ -69,6 +69,19 @@ Route::get('proveedores',function() {
     $proveedores = DB::table('proveedors')->paginate(5);
     return view('proveedores',['proveedores'=>$proveedores]);
 });
+
+// added in class
+// ruta a controlador
+
+
+Route::get('/clientes/create', [App\Http\Controllers\ClienteController::class, 'create'])->name('clientes.create');
+Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
+
+Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index')->middleware('auth');
+Route::get('ventas.index', [App\Http\Controllers\VentaController::class, 'index'])->middleware('auth');
+Route::get('producto.index', [App\Http\Controllers\ProductoController::class, 'index'])->middleware('auth');
+Route::get('categorias.index', [App\Http\Controllers\CategoriaController::class, 'index'])->middleware('auth');
+Route::get('proveedores.index', [App\Http\Controllers\ProveedorController::class, 'index'])->middleware('auth');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

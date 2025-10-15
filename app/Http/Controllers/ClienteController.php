@@ -12,7 +12,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $clientes=Cliente::paginate(5);
+        return view('clientes.index',['clientes'=>$clientes]);
     }
 
     /**
@@ -20,7 +21,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -28,7 +29,16 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'fecha_nac' => 'required|date',
+        'rfc' => 'required|string|max:13',
+        'edad' => 'required|integer',
+    ]);
+
+    \App\Models\cliente::create($validated);
+
+    return redirect()->route('clientes.index')->with('success', 'Cliente creado correctamente.');
     }
 
     /**
