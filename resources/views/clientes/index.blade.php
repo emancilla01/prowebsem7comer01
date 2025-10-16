@@ -2,12 +2,12 @@
 @section('menu2')
     @include('menu2')
 @endsection
-@section('contenido2')
 @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
+@section('contenido2')
 <p>INFORMACION DE CLIENTES</p>
 <div class="table-responsive">
     <table class="table table-primary">
@@ -28,6 +28,15 @@
                 <td>{{$cliente->fecha_nac}}</td>
                 <td>{{$cliente->rfc}}</td>
                 <td><a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning btn-sm">Editar</a></td>
+                <td><a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-info btn-sm">Ver</a></td>
+                <td>
+                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">Eliminar</button>
+                    </form>
+                </td>
+
             </tr>
             @endforeach
         </tbody>
