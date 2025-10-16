@@ -55,10 +55,10 @@ Route::get('ventas',function() {
     return view('ventas',['ventas'=>$ventas]);
 });
 
-Route::get('categorias',function() {
-    $categorias = DB::table('categorias')->paginate(5);
-    return view('categorias',['categorias'=>$categorias]);
-});
+// Route::get('categorias',function() {
+//     $categorias = DB::table('categorias')->paginate(5);
+//     return view('categorias',['categorias'=>$categorias]);
+// });
 
 Route::get('productos',function() {
     $productos = DB::table('productos')->paginate(5);
@@ -78,11 +78,22 @@ Route::get('/clientes/create', [App\Http\Controllers\ClienteController::class, '
 Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
 Route::get('/clientes/{cliente}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
 Route::put('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'update'])->name('clientes.update');
+Route::get('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'show'])->name('clientes.show');
+Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
+
+Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categorias.index')->middleware('auth');
+Route::get('/categorias/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('categorias.create');
+Route::post('/categorias', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categorias.store');
+Route::get('/categorias/{categoria}', [App\Http\Controllers\CategoriaController::class, 'show'])->name('categorias.show');
+Route::get('/categorias/{categoria}/edit', [App\Http\Controllers\CategoriaController::class, 'edit'])->name('categorias.edit');
+Route::put('/categorias/{categoria}', [App\Http\Controllers\CategoriaController::class, 'update'])->name('categorias.update');
+Route::delete('/categorias/{categoria}', [App\Http\Controllers\CategoriaController::class, 'destroy'])->name('categorias.destroy');
+
 
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index')->middleware('auth');
 Route::get('ventas.index', [App\Http\Controllers\VentaController::class, 'index'])->middleware('auth');
 Route::get('producto.index', [App\Http\Controllers\ProductoController::class, 'index'])->middleware('auth');
-Route::get('categorias.index', [App\Http\Controllers\CategoriaController::class, 'index'])->middleware('auth');
+// Route::get('categorias.index', [App\Http\Controllers\CategoriaController::class, 'index'])->middleware('auth');
 Route::get('proveedores.index', [App\Http\Controllers\ProveedorController::class, 'index'])->middleware('auth');
 
 require __DIR__.'/settings.php';

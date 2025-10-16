@@ -1,7 +1,7 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-primary"
    >
-    <a class="navbar-brand" href="inicio2">Comercializadora</a>
+    <a class="navbar-brand" href="{{ url('/inicio2') }}">Comercializadora</a>
     {{-- <button
         class="navbar-toggler d-lg-none"
         type="button"
@@ -14,27 +14,27 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" href="clientes" aria-current="page"
+                <a class="nav-link active" href="{{ url('/clientes') }}" aria-current="page"
                     >Clientes <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="ventas" aria-current="page"
+                <a class="nav-link active" href="{{ url('/ventas') }}" aria-current="page"
                     >Ventas <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="categorias" aria-current="page"
+                <a class="nav-link active" href="{{ url('/categorias') }}" aria-current="page"
                     >Categorias <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="productos" aria-current="page"
+                <a class="nav-link active" href="{{ url('/productos') }}" aria-current="page"
                     >Productos <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="proveedores" aria-current="page"
+                <a class="nav-link active" href="{{ url('/proveedores') }}" aria-current="page"
                     >Proveedores <span class="visually-hidden">(current)</span></a
                 >
             </li>

@@ -3,8 +3,48 @@
     @include('menu2')
 @endsection
 @section('contenido2')
-<p>INFORMACION DE CLIENTES</p>
+<h1>Categorias</h1>
+
+
+<a href="{{ route('categorias.create') }}" class="btn btn-success mb-3">Agregar Categoría</a>
+
 <div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($categorias as $categoria)
+            <tr>
+                <td>{{ $categoria->id }}</td>
+                <td>{{ $categoria->nombre }}</td>
+                <td>
+                    <a href="{{ route('categorias.show', $categoria->id) }}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <p>
+        {{ $categorias->links() }}
+    </p>
+</div>
+@endsection
+
+
+
+{{-- post original --}}
+{{-- <div class="table-responsive">
     <table class="table table-primary">
         <thead>
             <tr>
@@ -28,10 +68,10 @@
     <p>
         {{$clientes->links()}}
     </p>
-</div>
+</div> --}}
 
 
-
+{{-- original --}}
 <!-- {{-- <h1>Lista de Clientes</h1>
     <hr>
     <ul>
@@ -41,4 +81,3 @@
     </ul>
     {{$clientes->links()}} --}} -->
     
-@endsection 

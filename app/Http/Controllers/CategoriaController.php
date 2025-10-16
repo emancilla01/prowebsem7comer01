@@ -11,7 +11,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = \App\Models\Categoria::paginate(5);
+    return view('categorias.index', compact('categorias'));
     }
 
     /**
@@ -19,7 +20,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorias.create');
     }
 
     /**
@@ -27,7 +28,17 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate input
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+        ]);
+
+        // Create new categoria
+        $categoria = \App\Models\Categoria::create($validated);
+
+        // Redirect to index with success message
+        return redirect()->route('categorias.index')->with('success', 'Categoría creada exitosamente.');
     }
 
     /**
@@ -35,7 +46,8 @@ class CategoriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+    $categoria = \App\Models\Categoria::findOrFail($id);
+    return view('categorias.show', compact('categoria'));
     }
 
     /**
@@ -43,7 +55,8 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+    $categoria = \App\Models\Categoria::findOrFail($id);
+    return view('categorias.edit', compact('categoria'));
     }
 
     /**
@@ -51,7 +64,18 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate input
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+        ]);
+
+        // Find and update categoria
+        $categoria = \App\Models\Categoria::findOrFail($id);
+        $categoria->update($validated);
+
+        // Redirect to index with success message
+        return redirect()->route('categorias.index')->with('success', 'Categoría actualizada exitosamente.');
     }
 
     /**
@@ -59,6 +83,8 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+    $categoria = \App\Models\Categoria::findOrFail($id);
+    $categoria->delete();
+    return redirect()->route('categorias.index')->with('success', 'Categoría eliminada exitosamente.');
     }
 }
