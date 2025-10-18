@@ -16,8 +16,12 @@ class ClienteFactory extends Factory
      */
     public function definition(): array
     {
+        $fecha = $this->faker->dateTimeBetween('-60 years', '-18 years');
         return [
-            //
+            'nombre' => $this->faker->firstName().' '.$this->faker->lastName(),
+            'fecha_nac' => $fecha->format('Y-m-d'),
+            'rfc' => strtoupper($this->faker->bothify('????######???')) ,
+            'edad' => now()->diffInYears($fecha),
         ];
     }
 }

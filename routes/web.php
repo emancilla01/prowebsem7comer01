@@ -96,5 +96,14 @@ Route::get('producto.index', [App\Http\Controllers\ProductoController::class, 'i
 // Route::get('categorias.index', [App\Http\Controllers\CategoriaController::class, 'index'])->middleware('auth');
 Route::get('proveedores.index', [App\Http\Controllers\ProveedorController::class, 'index'])->middleware('auth');
 
+// EMPLEADOS
+Route::get('/empleados', [App\Http\Controllers\EmpleadoController::class, 'index'])->name('empleados.index')->middleware('auth');
+Route::get('/empleados/create', [App\Http\Controllers\EmpleadoController::class, 'create'])->name('empleados.create');
+Route::post('/empleados', [App\Http\Controllers\EmpleadoController::class, 'store'])->name('empleados.store');
+Route::get('/empleados/{empleado}', [App\Http\Controllers\EmpleadoController::class, 'show'])->name('empleados.show');
+Route::get('/empleados/{empleado}/edit', [App\Http\Controllers\EmpleadoController::class, 'edit'])->name('empleados.edit');
+Route::put('/empleados/{empleado}', [App\Http\Controllers\EmpleadoController::class, 'update'])->name('empleados.update');
+Route::delete('/empleados/{empleado}', [App\Http\Controllers\EmpleadoController::class, 'destroy'])->name('empleados.destroy');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

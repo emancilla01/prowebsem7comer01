@@ -12,6 +12,6 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Categoria::factory()->count(10)->create();
     }
 }
