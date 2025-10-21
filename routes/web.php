@@ -105,5 +105,14 @@ Route::get('/empleados/{empleado}/edit', [App\Http\Controllers\EmpleadoControlle
 Route::put('/empleados/{empleado}', [App\Http\Controllers\EmpleadoController::class, 'update'])->name('empleados.update');
 Route::delete('/empleados/{empleado}', [App\Http\Controllers\EmpleadoController::class, 'destroy'])->name('empleados.destroy');
 
+// DEPARTAMENTOS
+Route::get('/departamentos', [App\Http\Controllers\DepartamentoController::class, 'index'])->name('departamentos.index')->middleware('auth');
+Route::get('/departamentos/create', [App\Http\Controllers\DepartamentoController::class, 'create'])->name('departamentos.create');
+Route::post('/departamentos', [App\Http\Controllers\DepartamentoController::class, 'store'])->name('departamentos.store');
+Route::get('/departamentos/{departamento}', [App\Http\Controllers\DepartamentoController::class, 'show'])->name('departamentos.show');
+Route::get('/departamentos/{departamento}/edit', [App\Http\Controllers\DepartamentoController::class, 'edit'])->name('departamentos.edit');
+Route::put('/departamentos/{departamento}', [App\Http\Controllers\DepartamentoController::class, 'update'])->name('departamentos.update');
+Route::delete('/departamentos/{departamento}', [App\Http\Controllers\DepartamentoController::class, 'destroy'])->name('departamentos.destroy');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

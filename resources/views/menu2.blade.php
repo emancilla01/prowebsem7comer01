@@ -39,6 +39,11 @@
                 >
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/departamentos') }}" aria-current="page"
+                    >Departamentos <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="{{ url('/proveedores') }}" aria-current="page"
                     >Proveedores <span class="visually-hidden">(current)</span></a
                 >
